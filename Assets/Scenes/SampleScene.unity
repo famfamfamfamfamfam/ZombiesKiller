@@ -698,6 +698,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1123668374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1036691713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7229896980874549345, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
+  m_PrefabInstance: {fileID: 2055422498}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1084852883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,11 +1247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7229896980874549345, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.34
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 7229896980874549345, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 45.5
+      value: 41.75
       objectReference: {fileID: 0}
     - target: {fileID: 7229896980874549345, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1283,8 +1288,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 730455211993077621, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2055422500}
   m_SourcePrefab: {fileID: 100100000, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
+--- !u!1 &2055422499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 730455211993077621, guid: 99145dbb720a2ce41a1aa66654711fbf, type: 3}
+  m_PrefabInstance: {fileID: 2055422498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2055422500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055422499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0edd738e45e7247b4523d63e24b33d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theHilt: {fileID: 1036691713}
+  playerRightHand: {fileID: 1852576807140206169}
 --- !u!1 &2085705529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,11 +2221,12 @@ GameObject:
   - component: {fileID: 543450653107601018}
   - component: {fileID: 5866666021411316736}
   - component: {fileID: 634640787}
+  - component: {fileID: 5866666021411316737}
   - component: {fileID: 634640795}
   - component: {fileID: 634640796}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2216,11 +2244,11 @@ GameObject:
   - component: {fileID: 5866666021227228239}
   m_Layer: 0
   m_Name: BattleZombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &976506834848979225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,6 +5711,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &5866666021411316737
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148581983424}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7562095, y: 1.675581, z: 0.2591896}
+  m_Center: {x: -0.021730125, y: 0.8517389, z: -0.0053577423}
 --- !u!95 &5866666021427119565
 Animator:
   serializedVersion: 5

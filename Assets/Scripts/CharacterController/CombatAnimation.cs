@@ -35,7 +35,7 @@ public class CombatAnimation : MonoBehaviour
         }
         if (dashCondition)
         {
-            transform.position += transform.forward * 15 * Time.deltaTime;
+            transform.position += transform.forward * 20 * Time.deltaTime;
             dashFrameCount++;
             dashCondition = dashFrameCount < 47;
         }
