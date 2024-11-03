@@ -8,12 +8,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     Transform head;
     Animator characterController;
+    Rigidbody characterRigidbody;
     float horizontalValue, verticalValue;
-    float moveSpeed = 5;
+    float moveSpeed = 20;
 
     private void OnEnable()
     {
         characterController = GetComponent<Animator>();
+        characterRigidbody = GetComponent<Rigidbody>();
     }
     private void Update()
     {
@@ -30,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 characterController.SetBool("bStopMoving", false);
                 characterController.SetBool("bMoving", true);
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                characterRigidbody.MovePosition(transform.position + transform.forward * moveSpeed * Time.deltaTime);
             }
             else if (horizontalValue == 0 && verticalValue == 0)
             {
@@ -52,9 +54,12 @@ public class CharacterMovement : MonoBehaviour
     Vector3 dir;
     void NavigateCharacter()
     {
-        dir = new Vector3(horizontalValue, 0, verticalValue);
-        if (dir != Vector3.zero)
-            transform.forward = head.rotation * dir;
+        if (!AnyAnimationIsPlaying())
+        {
+            dir = new Vector3(horizontalValue, 0, verticalValue);
+            if (dir != Vector3.zero)
+                characterRigidbody.MoveRotation(Quaternion.LookRotation(head.rotation * dir));
+        }
     }
 
     private void LateUpdate()

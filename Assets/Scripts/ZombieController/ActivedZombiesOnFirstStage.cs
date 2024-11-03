@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ActivedZombiesOnFirstStage : MonoBehaviour
@@ -25,13 +26,6 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour
         transform.position = startPos;
         transform.rotation = startRo;
     }
-    void AnimateSweepFall()
-    {
-        if (true) // mau Zombie het
-        {
-            zombieController.SetTrigger("trSweepFall");
-        }
-    }
 
     private void Update()
     {
@@ -55,7 +49,21 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour
         if (elapseTime < 1)
         {
             transform.rotation *= Quaternion.Euler(45 * Time.deltaTime, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, 45 * Time.deltaTime, 0);
+            transform.rotation *= Quaternion.Euler(0, 0, 30 * Time.deltaTime);
+            transform.position += transform.up * 0.75f * Time.deltaTime;
             elapseTime += Time.deltaTime;
+        }
+    }
+
+
+    bool subTrigger = true;
+    void AnimateSweepFall()
+    {
+        if (subTrigger)
+        {
+            zombieController.SetTrigger("trSweepFall");
+            subTrigger = false;
         }
     }
 

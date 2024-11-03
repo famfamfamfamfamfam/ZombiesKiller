@@ -60,11 +60,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.49f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\IFirstStageManager.cs" />
+    <Compile Include="Assets\Scripts\Weapons\TriggerForPrefabs.cs" />
+    <Compile Include="Assets\Scripts\Weapons\NormalEnergy.cs" />
     <Compile Include="Assets\Scripts\Weapons\KnifeCollider.cs" />
+    <Compile Include="Assets\Scripts\ZombieController\ZombieCombat.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ActivedZombiesOnFirstStage.cs" />
+    <Compile Include="Assets\Scripts\FirstStageManager.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ZombieMovementOnSecondStage.cs" />
     <Compile Include="Assets\Scripts\CharacterController\MouseNavigation.cs" />
+    <Compile Include="Assets\Scripts\Weapons\SpecialEnergy.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Weapons\ObjPool.cs" />
     <Compile Include="Assets\Scripts\CharacterController\FPPCamera.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CombatAnimation.cs" />
   </ItemGroup>

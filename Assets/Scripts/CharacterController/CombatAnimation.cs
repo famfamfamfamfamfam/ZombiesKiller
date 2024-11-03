@@ -13,7 +13,8 @@ public class CombatAnimation : MonoBehaviour
     private void Update()
     {
         ToAttack();
-        ToDash();
+        ToAnimateDashing();
+        DashForward();
     }
 
     void ToAttack()
@@ -23,25 +24,23 @@ public class CombatAnimation : MonoBehaviour
             characterController.SetTrigger("trAttack");
         }
     }
-    int dashFrameCount;
-    bool dashCondition;
-    void ToDash()
+    void ToAnimateDashing()
     {
         if (Input.GetMouseButtonDown(1))
         {
             characterController.SetTrigger("trDash");
-            dashFrameCount = 1;
-            dashCondition = dashFrameCount == 1;
         }
-        if (dashCondition)
+    }
+
+    void DashForward()
+    {
+        if (characterController.GetCurrentAnimatorStateInfo(0).IsName("Dash"))
         {
-            transform.position += transform.forward * 20 * Time.deltaTime;
-            dashFrameCount++;
-            dashCondition = dashFrameCount < 47;
+            characterController.applyRootMotion = true;
         }
         else
         {
-            dashFrameCount = 0;
+            characterController.applyRootMotion = false;
         }
     }
 

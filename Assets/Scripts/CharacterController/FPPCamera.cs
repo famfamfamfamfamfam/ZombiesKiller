@@ -41,14 +41,17 @@ public class FPPCamera : MonoBehaviour
 
     Ray shootingRay;
     RaycastHit hit;
+    [SerializeField]
+    LayerMask zombieLayerMask;
+
     void Shooting()
     {
         if (Input.GetMouseButtonDown(0))
         {
             shootingRay = new Ray(transform.position, transform.forward);
-            if (Physics.Raycast(shootingRay, out hit, 115)) //them layermask
+            if (Physics.Raycast(shootingRay, out hit, 115, zombieLayerMask))
             {
-                Debug.Log("ban trung");
+                Debug.Log("Omaewamoushindeiru");
             }
             kick = true;
         }
