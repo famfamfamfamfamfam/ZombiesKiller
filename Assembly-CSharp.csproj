@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\IFirstStageManager.cs" />
+    <Compile Include="Assets\Scripts\ZombieController\ReviveZombie.cs" />
+    <Compile Include="Assets\Scripts\ZombieController\ZombieHandToDamage.cs" />
     <Compile Include="Assets\Scripts\Weapons\TriggerForPrefabs.cs" />
     <Compile Include="Assets\Scripts\Weapons\NormalEnergy.cs" />
     <Compile Include="Assets\Scripts\Weapons\KnifeCollider.cs" />
@@ -69,9 +71,9 @@
     <Compile Include="Assets\Scripts\FirstStageManager.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ZombieMovementOnSecondStage.cs" />
     <Compile Include="Assets\Scripts\CharacterController\MouseNavigation.cs" />
+    <Compile Include="Assets\Scripts\ObjPool.cs" />
     <Compile Include="Assets\Scripts\Weapons\SpecialEnergy.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CharacterMovement.cs" />
-    <Compile Include="Assets\Scripts\Weapons\ObjPool.cs" />
     <Compile Include="Assets\Scripts\CharacterController\FPPCamera.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CombatAnimation.cs" />
   </ItemGroup>

@@ -5,9 +5,11 @@ using UnityEngine;
 public class CombatAnimation : MonoBehaviour
 {
     Animator characterController;
+    Rigidbody characterRigidbody;
     private void OnEnable()
     {
         characterController = GetComponent<Animator>();
+        characterRigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -36,10 +38,12 @@ public class CombatAnimation : MonoBehaviour
     {
         if (characterController.GetCurrentAnimatorStateInfo(0).IsName("Dash"))
         {
+            characterRigidbody.isKinematic = true;
             characterController.applyRootMotion = true;
         }
         else
         {
+            characterRigidbody.isKinematic = false;
             characterController.applyRootMotion = false;
         }
     }

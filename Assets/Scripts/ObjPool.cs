@@ -20,6 +20,7 @@ public class ObjPool
         {
             GameObject obj = inPoolObjs[0];
             inPoolObjs.RemoveAt(0);
+            obj.SetActive(true);
             return obj;
         }
         return null;

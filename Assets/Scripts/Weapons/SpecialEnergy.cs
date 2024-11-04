@@ -23,9 +23,8 @@ public class SpecialEnergy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1, 20));
+            yield return new WaitForSeconds(Random.Range(3, 20));
             gObj[index] = specialEnergyPool.TakeFromPool();
-            gObj[index].SetActive(true);
             gObj[index].transform.position = new Vector3(Random.Range(-17f, 17f), 42, Random.Range(-55f, -20f));
             yield return StartCoroutine(DisappearSpecialEnergy(index));
         }
@@ -33,7 +32,6 @@ public class SpecialEnergy : MonoBehaviour
     IEnumerator DisappearSpecialEnergy(int index)
     {
         yield return new WaitForSeconds(Random.Range(5, 10));
-        gObj[index].SetActive(false);
         specialEnergyPool.PutInPool(gObj[index]);
     }
 }

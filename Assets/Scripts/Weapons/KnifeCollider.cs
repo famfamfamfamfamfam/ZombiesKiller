@@ -6,7 +6,6 @@ public class KnifeCollider : MonoBehaviour
 {
     [SerializeField]
     Transform theHilt, playerRightHand;
-    [SerializeField]
 
     private void OnTriggerEnter(Collider other)
     {

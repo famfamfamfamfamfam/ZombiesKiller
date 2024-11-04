@@ -32,4 +32,8 @@ public class ZombieCombat : MonoBehaviour
     {
         zombieController.SetTrigger("trReact");
     }
+    void ToDie()
+    {
+        zombieController.SetTrigger("trDie");
+    }
 }

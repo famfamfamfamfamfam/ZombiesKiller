@@ -13,10 +13,9 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour
     {
         zombieController = GetComponent<Animator>();
     }
-
     private void Start()
     {
-        startPos = Vector3.up * 2.25f + Vector3.forward * 87.2f;
+        startPos = Vector3.up * 2.25f + Vector3.forward * 87.2f + Vector3.left * 2;
         startRo = Quaternion.Euler(-90, 0, 0);
         SetUpStartPositon();
     }
@@ -70,7 +69,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour
 
     public void DieEventInSweepFallAnimation()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false);//PutinObjPool
     }
     public void GameOverEventInClimbAnimation()
     {

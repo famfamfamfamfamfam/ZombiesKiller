@@ -10,7 +10,7 @@ public class ZombieMovementOnSecondStage : MonoBehaviour
     private void Update()
     {
         CaculateDirToPlayer();
-        SetTheAngles(dirToPlayer);
+        SetTheAngles();
         SlerpTo();
     }
 
@@ -21,17 +21,17 @@ public class ZombieMovementOnSecondStage : MonoBehaviour
     }
 
     Quaternion theOldAngle, theTargetAngle;
-    public void SetTheAngles(Vector3 dir)
+    void SetTheAngles()
     {
         if (timeElapse == 0)
         {
             theOldAngle = transform.rotation;
         }
-        theTargetAngle = Quaternion.LookRotation(dir);
+        theTargetAngle = Quaternion.LookRotation(dirToPlayer);
     }
 
     float timeElapse;
-    public void SlerpTo()
+    void SlerpTo()
     {
         timeElapse += Time.deltaTime;
         if (timeElapse > 1)
