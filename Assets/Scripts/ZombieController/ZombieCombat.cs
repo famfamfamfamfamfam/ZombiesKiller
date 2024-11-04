@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieCombat : MonoBehaviour
+public class ZombieCombat : MonoBehaviour, IDie, IReact
 {
     Animator zombieController;
     private void OnEnable()
@@ -27,7 +27,6 @@ public class ZombieCombat : MonoBehaviour
         zombieController.SetTrigger("trAttack");
     }
 
-
     void ToReact()
     {
         zombieController.SetTrigger("trReact");
@@ -35,5 +34,29 @@ public class ZombieCombat : MonoBehaviour
     void ToDie()
     {
         zombieController.SetTrigger("trDie");
+    }
+
+    public void Die()
+    {
+        ToDie();
+    }
+    public void React()
+    {
+        ToReact();
+    }
+
+    [SerializeField]
+    Transform theRightHand;
+    [SerializeField]
+    CommunicateManager communicator;
+
+    public void CheckDamageAnimationEvent()
+    {
+        if(Physics.CheckSphere(theRightHand.position, 0.2f))
+        {
+            //IReact iReact = (IReact)communicator;
+            //iReact?.React();
+            communicator.CanReactThing("Character")?.React();
+        }
     }
 }

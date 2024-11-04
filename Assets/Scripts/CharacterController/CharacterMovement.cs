@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     Animator characterController;
     Rigidbody characterRigidbody;
     float horizontalValue, verticalValue;
-    float moveSpeed = 20;
+    float moveSpeed = 5;
 
     private void OnEnable()
     {
@@ -21,9 +21,15 @@ public class CharacterMovement : MonoBehaviour
     {
         horizontalValue = Input.GetAxis("Horizontal");
         verticalValue = Input.GetAxis("Vertical");
+    }
+
+    private void FixedUpdate()
+    {
         NavigateCharacter();
         Moving();
+
     }
+
     void Moving()
     {
         if (!AnyAnimationIsPlaying())
@@ -32,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 characterController.SetBool("bStopMoving", false);
                 characterController.SetBool("bMoving", true);
-                characterRigidbody.MovePosition(transform.position + transform.forward * moveSpeed * Time.deltaTime);
+                characterRigidbody.MovePosition(transform.position + transform.forward * moveSpeed * Time.fixedDeltaTime);
             }
             else if (horizontalValue == 0 && verticalValue == 0)
             {

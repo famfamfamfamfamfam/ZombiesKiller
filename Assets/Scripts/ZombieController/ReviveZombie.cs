@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ReviveZombie : MonoBehaviour
+public class ReviveZombie : MonoBehaviour, ISendToPool
 {
     ObjPool zombiePool;
     [SerializeField]
@@ -34,5 +35,10 @@ public class ReviveZombie : MonoBehaviour
                 i++;
             }
         }
+    }
+
+    public void SendToPool()
+    {
+
     }
 }

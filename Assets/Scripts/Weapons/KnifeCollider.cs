@@ -7,6 +7,9 @@ public class KnifeCollider : MonoBehaviour
     [SerializeField]
     Transform theHilt, playerRightHand;
 
+    [SerializeField]
+    CommunicateManager communicator;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -15,7 +18,7 @@ public class KnifeCollider : MonoBehaviour
         }
         else
         {
-            //hurt
+            communicator.CanReactThing("Zombie")?.React();
         }
     }
 

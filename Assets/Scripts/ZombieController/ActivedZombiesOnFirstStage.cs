@@ -1,29 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
-public class ActivedZombiesOnFirstStage : MonoBehaviour
+public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
 {
     Animator zombieController;
-    Vector3 startPos;
-    Quaternion startRo;
 
     private void OnEnable()
     {
         zombieController = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        startPos = Vector3.up * 2.25f + Vector3.forward * 87.2f + Vector3.left * 2;
-        startRo = Quaternion.Euler(-90, 0, 0);
         SetUpStartPositon();
     }
 
     void SetUpStartPositon()
     {
-        transform.position = startPos;
-        transform.rotation = startRo;
+        transform.position = Vector3.up * 2.25f + Vector3.forward * 87.2f + Vector3.left * 2;
+        transform.rotation = Quaternion.Euler(-90, 0, 0);
     }
 
     private void Update()
@@ -64,6 +56,11 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour
             zombieController.SetTrigger("trSweepFall");
             subTrigger = false;
         }
+    }
+
+    public void Die()
+    {
+        AnimateSweepFall();
     }
 
 

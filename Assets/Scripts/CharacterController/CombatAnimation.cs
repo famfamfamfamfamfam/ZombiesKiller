@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatAnimation : MonoBehaviour
+public class CombatAnimation : MonoBehaviour, IDie, IReact
 {
     Animator characterController;
     Rigidbody characterRigidbody;
@@ -58,4 +58,12 @@ public class CombatAnimation : MonoBehaviour
         characterController.SetTrigger("trDie");
     }
 
+    public void Die()
+    {
+        ToDie();
+    }
+    public void React()
+    {
+        ToReact();
+    }
 }
