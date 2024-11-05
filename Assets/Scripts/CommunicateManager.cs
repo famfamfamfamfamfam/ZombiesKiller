@@ -5,11 +5,11 @@ using UnityEngine;
 public class CommunicateManager : MonoBehaviour
 {
     [SerializeField]
-    ActivedZombiesOnFirstStage zom1;
-    [SerializeField]
     ZombieCombat zom2;
     [SerializeField]
     CombatAnimation charac;
+    [SerializeField]
+    ReviveZombie zomPool;
 
     public static CommunicateManager instance;
 
@@ -21,6 +21,8 @@ public class CommunicateManager : MonoBehaviour
     {
         instance = null;
     }
+
+    IDie zom1;
 
     public IDie CanDieThing(string thatThing)
     {
@@ -42,8 +44,10 @@ public class CommunicateManager : MonoBehaviour
         return charac;
     }
 
-    public ISendToPool ToSendToPool(GameObject objSent)
+    public ISendToPool ToSendToPool(GameObject obj)
     {
-        return objSent.GetComponent<ISendToPool>();
+        zom1 = obj.GetComponent<IDie>();
+        CanDieThing("Zombie1")?.Die();
+        return zomPool;
     }
 }

@@ -203,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &102060455
 Camera:
   m_ObjectHideFlags: 0
@@ -557,7 +557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theHilt: {fileID: 873791547}
   playerRightHand: {fileID: 1852576807140206169}
-  communicator: {fileID: 2008481900}
 --- !u!65 &862133626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1189,7 +1188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1594896127
 Transform:
   m_ObjectHideFlags: 0
@@ -1226,7 +1225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1607082295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,7 +1567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1756159711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,7 +1765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2029089356
 Transform:
   m_ObjectHideFlags: 0
@@ -2529,7 +2528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &976506835051016346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,7 +4891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theRightHand: {fileID: 1292211218560187051}
-  communicator: {fileID: 2008481900}
 --- !u!65 &5866666021227228243
 BoxCollider:
   m_ObjectHideFlags: 0

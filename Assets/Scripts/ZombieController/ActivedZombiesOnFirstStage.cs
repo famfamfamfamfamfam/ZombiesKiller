@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +62,6 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
     {
         AnimateSweepFall();
     }
-
 
     public void DieEventInSweepFallAnimation()
     {
