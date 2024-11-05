@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatAnimation : MonoBehaviour, IDie, IReact
+public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
 {
     Animator characterController;
     Rigidbody characterRigidbody;
@@ -66,4 +66,9 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact
     {
         ToReact();
     }
+    public bool IsPlaying()
+    {
+        return characterController.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+    }
+
 }

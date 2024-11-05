@@ -10,27 +10,40 @@ public class CommunicateManager : MonoBehaviour
     ZombieCombat zom2;
     [SerializeField]
     CombatAnimation charac;
-    [SerializeField]
-    ReviveZombie zomPool;//xem lai
+
+    public static CommunicateManager instance;
+
+    private void OnEnable()
+    {
+        instance = this;
+    }
+    private void OnDisable()
+    {
+        instance = null;
+    }
 
     public IDie CanDieThing(string thatThing)
     {
-        if (thatThing == "Zombie1" && zom1 is IDie) return zom1;
-        if (thatThing == "Zombie2" && zom2 is IDie) return zom2;
-        if (thatThing == "Character" && charac is IDie) return charac;
+        if (thatThing == "Zombie1") return zom1;
+        if (thatThing == "Zombie2") return zom2;
+        if (thatThing == "Character") return charac;
         return null;
     }
 
     public IReact CanReactThing(string thatThing)
     {
-        if (thatThing == "Zombie" && zom2 is IReact) return zom2;
-        if (thatThing == "Character" && charac is IReact) return charac;
+        if (thatThing == "Zombie") return zom2;
+        if (thatThing == "Character") return charac;
         return null;
     }
 
-    public ISendToPool ToSendToPool()
+    public IIsPlayingAnimation MayBePlayingThing()
     {
-        if (zomPool is ISendToPool) return zomPool;
-        return null;
+        return charac;
+    }
+
+    public ISendToPool ToSendToPool(GameObject objSent)
+    {
+        return objSent.GetComponent<ISendToPool>();
     }
 }

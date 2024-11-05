@@ -13,5 +13,10 @@ public interface IReact
 
 public interface ISendToPool
 {
-    void SendToPool();
+    void SendToPool(GameObject objSent);
+}
+
+public interface IIsPlayingAnimation
+{
+    bool IsPlaying();
 }

@@ -37,8 +37,8 @@ public class ReviveZombie : MonoBehaviour, ISendToPool
         }
     }
 
-    public void SendToPool()
+    public void SendToPool(GameObject objSent)
     {
-
+        zombiePool.PutInPool(objSent);
     }
 }

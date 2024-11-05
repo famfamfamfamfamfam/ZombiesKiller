@@ -12,7 +12,7 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
 
     private void OnTriggerEnter(Collider other)
     {
-        zombieController.SetTrigger("trAttack");
+        ToAttack();
     }
     private void OnTriggerExit(Collider other)
     {
@@ -20,16 +20,23 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
     }
     void OnCollisionEnter(Collision collision)
     {
-        zombieController.SetTrigger("trAttack");
+        ToAttack();
     }
     private void OnCollisionExit(Collision collision)
     {
-        zombieController.SetTrigger("trAttack");
+        ToAttack();
+    }
+
+    void ToAttack()
+    {
+        if (!zombieController.GetCurrentAnimatorStateInfo(0).IsName("React"))
+            zombieController.SetTrigger("trAttack");
     }
 
     void ToReact()
     {
-        zombieController.SetTrigger("trReact");
+        if (!zombieController.GetCurrentAnimatorStateInfo(0).IsName("React"))
+            zombieController.SetTrigger("trReact");
     }
     void ToDie()
     {
@@ -47,8 +54,6 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
 
     [SerializeField]
     Transform theRightHand;
-    [SerializeField]
-    CommunicateManager communicator;
 
     public void CheckDamageAnimationEvent()
     {
@@ -56,7 +61,7 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
         {
             //IReact iReact = (IReact)communicator;
             //iReact?.React();
-            communicator.CanReactThing("Character")?.React();
+            CommunicateManager.instance.CanReactThing("Character")?.React();
         }
     }
 }

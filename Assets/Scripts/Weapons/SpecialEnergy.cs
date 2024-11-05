@@ -7,31 +7,31 @@ public class SpecialEnergy : MonoBehaviour
     ObjPool specialEnergyPool = new ObjPool();
     [SerializeField]
     GameObject specialEnergyPrefab;
+    GameObject gObj;
 
     private void Start()
     {
+        gObj = new GameObject();
         for (int i = 0; i < 3; i++)
         {
             specialEnergyPool.PutInPool(Instantiate(specialEnergyPrefab));
         }
-        StartCoroutine(SpawnSpecialEnergy(0));
-        StartCoroutine(SpawnSpecialEnergy(1));
+        StartCoroutine(SpawnSpecialEnergy());
     }
 
-    GameObject[] gObj = new GameObject[2];
-    IEnumerator SpawnSpecialEnergy(int index)
+    IEnumerator SpawnSpecialEnergy()
     {
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(3, 20));
-            gObj[index] = specialEnergyPool.TakeFromPool();
-            gObj[index].transform.position = new Vector3(Random.Range(-17f, 17f), 42, Random.Range(-55f, -20f));
-            yield return StartCoroutine(DisappearSpecialEnergy(index));
+            gObj = specialEnergyPool.TakeFromPool();
+            gObj.transform.position = new Vector3(Random.Range(-17f, 17f), 42, Random.Range(-55f, -20f));
+            yield return StartCoroutine(DisappearSpecialEnergy());
         }
     }
-    IEnumerator DisappearSpecialEnergy(int index)
+    IEnumerator DisappearSpecialEnergy()
     {
         yield return new WaitForSeconds(Random.Range(5, 10));
-        specialEnergyPool.PutInPool(gObj[index]);
+        specialEnergyPool.PutInPool(gObj);
     }
 }
