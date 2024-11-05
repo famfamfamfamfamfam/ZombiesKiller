@@ -6,12 +6,21 @@ public class FPPCamera : MonoBehaviour
 {
     [SerializeField]
     Transform theWall;
+    [SerializeField]
+    GameObject camSight;
     Camera thisCam;
 
     private void OnEnable()
     {
+        camSight.SetActive(true);
         thisCam = GetComponent<Camera>();
     }
+
+    private void OnDisable()
+    {
+        camSight.SetActive(false);
+    }
+
     private void Start()
     {
         transform.position = theWall.position - Vector3.forward * 15;
@@ -36,7 +45,7 @@ public class FPPCamera : MonoBehaviour
     }
     void MoveSight()
     {
-        transform.position += axis * 5 * Time.deltaTime;
+        transform.position += axis * 7.5f * Time.deltaTime;
     }
 
     Ray shootingRay;
@@ -51,8 +60,7 @@ public class FPPCamera : MonoBehaviour
             shootingRay = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(shootingRay, out hit, 115, zombieLayerMask))
             {
-                CommunicateManager.instance.ToSendToPool(hit.collider.gameObject)?.SendToPool(hit.collider.gameObject);
-                Debug.Log("Omaewamoushindeiru");
+                CommunicateManager.instance.CanDieThing(hit.collider.gameObject)?.Die();
             }
             kick = true;
         }

@@ -11,7 +11,7 @@ public class NormalEnergy : MonoBehaviour
     private void Start()
     {
         normalEnergyPool = new ObjPool();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         {
             normalEnergyPool.PutInPool(Instantiate(normalEnergyPrefab));
         }
@@ -25,7 +25,7 @@ public class NormalEnergy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1, 10));
+            yield return new WaitForSeconds(Random.Range(1, 5));
             GameObject obj = normalEnergyPool.TakeFromPool();
             if (obj != null)
             {
@@ -38,12 +38,22 @@ public class NormalEnergy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5, 15));
+            yield return new WaitForSeconds(Random.Range(3, 15));
             if (gObjs.Count > 0 && gObjs[0] != null)
             {
                 normalEnergyPool.PutInPool(gObjs[0]);
                 gObjs.RemoveAt(0);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject obj in gObjs)
+        {
+            Destroy(obj);
+        }
+        gObjs.Clear();
+        normalEnergyPool.DestroyPool();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CommunicateManager : MonoBehaviour
 {
     [SerializeField]
-    ZombieCombat zom2;
+    ZombieCombat zom;
     [SerializeField]
     CombatAnimation charac;
     [SerializeField]
@@ -22,19 +22,21 @@ public class CommunicateManager : MonoBehaviour
         instance = null;
     }
 
-    IDie zom1;
-
     public IDie CanDieThing(string thatThing)
     {
-        if (thatThing == "Zombie1") return zom1;
-        if (thatThing == "Zombie2") return zom2;
+        if (thatThing == "Zombie") return zom;
         if (thatThing == "Character") return charac;
         return null;
     }
 
+    public IDie CanDieThing(GameObject obj)
+    {
+        return obj.GetComponent<IDie>();
+    }
+
     public IReact CanReactThing(string thatThing)
     {
-        if (thatThing == "Zombie") return zom2;
+        if (thatThing == "Zombie") return zom;
         if (thatThing == "Character") return charac;
         return null;
     }
@@ -44,10 +46,8 @@ public class CommunicateManager : MonoBehaviour
         return charac;
     }
 
-    public ISendToPool ToSendToPool(GameObject obj)
+    public ISendToPool ToSendToPool()
     {
-        zom1 = obj.GetComponent<IDie>();
-        CanDieThing("Zombie1")?.Die();
         return zomPool;
     }
 }

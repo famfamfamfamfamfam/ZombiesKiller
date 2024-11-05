@@ -26,4 +26,13 @@ public class ObjPool
         return null;
     }
 
+    public void DestroyPool()
+    {
+        foreach (GameObject obj in inPoolObjs)
+        {
+            Object.Destroy(obj);
+        }
+        inPoolObjs.Clear();
+    }
+
 }

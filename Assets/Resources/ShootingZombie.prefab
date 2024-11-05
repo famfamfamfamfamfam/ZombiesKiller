@@ -1746,6 +1746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handReachingCrown: {fileID: 8837552012378549613}
   topWallCheckPoint: {fileID: 7162311096190468316, guid: d4158bb3c6c187c4d87e64dd3ee8444d, type: 3}
+  theWall: {fileID: 2143701644143202096, guid: a7c2c8d8ef66f1d4dbd230ecc32874c6, type: 3}
 --- !u!1 &6876210069240049430
 GameObject:
   m_ObjectHideFlags: 0

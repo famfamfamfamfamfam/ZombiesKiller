@@ -47,15 +47,9 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
         }
     }
 
-
-    bool subTrigger = true;
     void AnimateSweepFall()
     {
-        if (subTrigger)
-        {
-            zombieController.SetTrigger("trSweepFall");
-            subTrigger = false;
-        }
+        zombieController.SetTrigger("trSweepFall");
     }
 
     public void Die()
@@ -63,9 +57,17 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
         AnimateSweepFall();
     }
 
+
+    [SerializeField]
+    Transform theWall;
+    void OnSpecialSkill()
+    {
+        gameObject.transform.SetParent(theWall);
+    }
+
     public void DieEventInSweepFallAnimation()
     {
-        gameObject.SetActive(false);//PutinObjPool
+        CommunicateManager.instance.ToSendToPool()?.SendToPool(gameObject);
     }
     public void GameOverEventInClimbAnimation()
     {
