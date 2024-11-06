@@ -51,6 +51,7 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
     void ToReact()
     {
         characterController.SetTrigger("trReact");
+        GameManager.instance.SetCharHealth();
     }
 
     void ToDie()

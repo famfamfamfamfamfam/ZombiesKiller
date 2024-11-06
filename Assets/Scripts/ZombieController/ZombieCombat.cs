@@ -50,6 +50,7 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
     public void React()
     {
         ToReact();
+        GameManager.instance.SetZomHealth();
     }
 
     [SerializeField]
@@ -57,7 +58,7 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
 
     public void CheckDamageAnimationEvent()
     {
-        if(Physics.CheckSphere(theRightHand.position, 0.2f))
+        if (Physics.CheckSphere(theRightHand.position, 0.2f))
         {
             //IReact iReact = (IReact)communicator;
             //iReact?.React();

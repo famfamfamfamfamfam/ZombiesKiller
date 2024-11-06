@@ -30,16 +30,25 @@ public class ModeSwitcher : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         Destroy(firstStageSpawn);
-        battleZom.SetActive(true);
-        secondStageWeapon?.SetActive(true);
+        if (canAccess)
+        {
+            FPPCam.SetActive(false);
+            battleZom.SetActive(true);
+            secondStageWeapon.SetActive(true);
+            GameManager.instance.thresold = 100;
+            GameManager.instance.plusValue = GameManager.instance.score;
+            GameManager.instance.plusAmount = 5;
+            canAccess = false;
+        }
     }
-
+    bool canAccess = false;
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(5);
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(60);
+        canAccess = true;
+        Destroy(gameObject);
     }
 }

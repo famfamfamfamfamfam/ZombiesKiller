@@ -13,9 +13,10 @@ public class KnifeCollider : MonoBehaviour
         {
             ToCollectTheKnife();
         }
-        else if (CommunicateManager.instance.MayBePlayingThing().IsPlaying() && theHilt.parent == playerRightHand)
+        else if (CommunicateManager.instance.MayBePlayingThing().IsPlaying() && theHilt.parent == playerRightHand && GameManager.instance.weaponAmount > 0)
         {
             CommunicateManager.instance.CanReactThing("Zombie")?.React();
+            GameManager.instance.DecreaseValidDamage();
         }
     }
 

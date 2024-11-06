@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class SpecialEnergy : MonoBehaviour
+public class SpecialEnergy : SpawnMethods
 {
     ObjPool specialEnergyPool = new ObjPool();
     [SerializeField]
@@ -15,6 +16,7 @@ public class SpecialEnergy : MonoBehaviour
             specialEnergyPool.PutInPool(Instantiate(specialEnergyPrefab));
         }
         StartCoroutine(SpawnSpecialEnergy());
+        //StartCoroutine(Spawn(UnityEngine.Random.Range(3, 15), specialEnergyPool, gObj, SpawnSpecialEnergy));
     }
 
     GameObject gObj;
@@ -23,15 +25,16 @@ public class SpecialEnergy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(3, 15));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(3, 15));
             gObj = specialEnergyPool.TakeFromPool();
-            gObj.transform.position = new Vector3(Random.Range(-17f, 17f), 42, Random.Range(-55f, -20f));
+            gObj.transform.position = new Vector3(UnityEngine.Random.Range(-17f, 17f), 42, UnityEngine.Random.Range(-55f, -20f));
             yield return StartCoroutine(DisappearSpecialEnergy());
         }
     }
+
     IEnumerator DisappearSpecialEnergy()
     {
-        yield return new WaitForSeconds(Random.Range(5, 10));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(5, 10));
         specialEnergyPool.PutInPool(gObj);
     }
 

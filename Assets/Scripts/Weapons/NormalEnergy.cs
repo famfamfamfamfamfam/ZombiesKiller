@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalEnergy : MonoBehaviour
+public class NormalEnergy : SpawnMethods
 {
     ObjPool normalEnergyPool;
     [SerializeField]
@@ -15,30 +16,22 @@ public class NormalEnergy : MonoBehaviour
         {
             normalEnergyPool.PutInPool(Instantiate(normalEnergyPrefab));
         }
-        StartCoroutine(SpawnNormalEnergy());
+        StartCoroutine(Spawn(UnityEngine.Random.Range(1, 5), normalEnergyPool, gObjs, NormalEnergyPos));
         StartCoroutine(DisappearNormalEnergy());
     }
 
     List<GameObject> gObjs = new List<GameObject>();
 
-    IEnumerator SpawnNormalEnergy()
+    void NormalEnergyPos()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.Range(1, 5));
-            GameObject obj = normalEnergyPool.TakeFromPool();
-            if (obj != null)
-            {
-                gObjs.Add(obj);
-                obj.transform.position = new Vector3(Random.Range(-17f, 17f), 42, Random.Range(-55f, -20f));
-            }
-        }
+        gObjs[gObjs.Count - 1].transform.position = new Vector3(UnityEngine.Random.Range(-17f, 17f), 42, UnityEngine.Random.Range(-55f, -20f));
     }
+
     IEnumerator DisappearNormalEnergy()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(3, 15));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(3, 15));
             if (gObjs.Count > 0 && gObjs[0] != null)
             {
                 normalEnergyPool.PutInPool(gObjs[0]);

@@ -52,9 +52,13 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
         zombieController.SetTrigger("trSweepFall");
     }
 
+    int health = 2;
+
     public void Die()
     {
-        AnimateSweepFall();
+        health--;
+        if (health == 0)
+            AnimateSweepFall();
     }
 
 
@@ -67,6 +71,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
 
     public void DieEventInSweepFallAnimation()
     {
+        health = 2;
         CommunicateManager.instance.ToSendToPool()?.SendToPool(gameObject);
     }
     public void GameOverEventInClimbAnimation()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ReviveZombie : MonoBehaviour, ISendToPool
+public class ReviveZombie : SpawnMethods, ISendToPool
 {
     ObjPool zombiePool;
     [SerializeField]
@@ -16,32 +16,24 @@ public class ReviveZombie : MonoBehaviour, ISendToPool
         {
             zombiePool.PutInPool(Instantiate(zombiePrefab));
         }
-        StartCoroutine(SpawnZombiesAtStart());
+        StartCoroutine(Spawn(1.5f, zombiePool, takenZom, ZomPos));
     }
 
     List<GameObject> takenZom = new List<GameObject>();
     Vector3 delta;
     int i = -2;
-    IEnumerator SpawnZombiesAtStart()
+    void ZomPos()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(1.5f);
-            GameObject obj = zombiePool.TakeFromPool();
-            if (obj != null)
-            {
-                takenZom.Add(obj);
-                if (i == 3) i = -2;
-                delta = Vector3.right * i * 4.5f;
-                obj.transform.position += delta;
-                i++;
-            }
-        }
+        if (i == 3) i = -2;
+        delta = Vector3.right * i * 4.5f;
+        takenZom[takenZom.Count - 1].transform.position += delta;
+        i++;
     }
 
     public void SendToPool(GameObject objSent)
     {
         zombiePool.PutInPool(objSent);
+        takenZom.RemoveAt(0);
     }
 
     void OnDestroy()
