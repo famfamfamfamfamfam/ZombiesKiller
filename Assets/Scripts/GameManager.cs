@@ -16,11 +16,16 @@ public class GameManager : MonoBehaviour
         instance = null;
     }
 
+    [SerializeField]
+    List<GameObject> objsWaitingToRun;
+
     private void Start()
     {
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
+
+
     }
 
     public int score { get; private set; }

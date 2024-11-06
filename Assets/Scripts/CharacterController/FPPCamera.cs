@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPPCamera : MonoBehaviour
+public class FPPCamera : MonoBehaviour, IOrderOfRunningStart
 {
+    [SerializeField]
+    Joystick joystick;
     [SerializeField]
     Transform theWall;
     [SerializeField]
@@ -16,12 +18,12 @@ public class FPPCamera : MonoBehaviour
         thisCam = GetComponent<Camera>();
     }
 
-    private void OnDisable()////looix
+    private void OnDisable()
     {
         camSight.SetActive(false);
     }
 
-    private void Start()
+    public void Init()
     {
         transform.position = theWall.position - Vector3.forward * 15;
     }
@@ -43,9 +45,17 @@ public class FPPCamera : MonoBehaviour
         axis.z = 0;
         axis = axis.normalized;
     }
+
+    Vector3 joystickMove;
     void MoveSight()
     {
-        transform.position += axis * 7.5f * Time.deltaTime;
+        if (Application.platform != RuntimePlatform.Android)
+            transform.position += axis * 7.5f * Time.deltaTime;
+        else
+        {
+            joystickMove = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+            transform.position += joystickMove * 5;
+        }
     }
 
     Ray shootingRay;

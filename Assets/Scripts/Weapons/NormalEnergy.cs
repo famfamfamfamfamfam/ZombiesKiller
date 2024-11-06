@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalEnergy : SpawnMethods
+public class NormalEnergy : SpawnMethods, IOrderOfRunningStart
 {
     ObjPool normalEnergyPool;
     [SerializeField]
     GameObject normalEnergyPrefab;
 
-    private void Start()
+    public void Init()
     {
         normalEnergyPool = new ObjPool();
         for (int i = 0; i < 15; i++)

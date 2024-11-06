@@ -20,3 +20,8 @@ public interface IIsPlayingAnimation
 {
     bool IsPlaying();
 }
+
+public interface IOrderOfRunningStart
+{
+    void Init();
+}

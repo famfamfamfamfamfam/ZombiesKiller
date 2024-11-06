@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ModeSwitcher : MonoBehaviour
+public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart
 {
     [SerializeField]
     GameObject FPPCam;
@@ -15,7 +15,7 @@ public class ModeSwitcher : MonoBehaviour
     [SerializeField]
     GameObject firstStageSpawn;
 
-    private void Start()
+    public void Init()
     {
         battleZom.SetActive(false);
         secondStageWeapon.SetActive(false);

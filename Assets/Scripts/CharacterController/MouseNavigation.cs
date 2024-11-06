@@ -27,6 +27,7 @@ public class MouseNavigation : MonoBehaviour
     private void LateUpdate()
     {
         SetUpView();
+        if (Application.platform == RuntimePlatform.Android) return;
         mouseOnX = Input.GetAxis("Mouse X");
         MouseNavigate();
         UpdateDirection();

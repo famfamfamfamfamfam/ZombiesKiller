@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ReviveZombie : SpawnMethods, ISendToPool
+public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart
 {
     ObjPool zombiePool;
     [SerializeField]
     GameObject zombiePrefab;
 
-    private void Start()
+    public void Init()
     {
         zombiePool = new ObjPool();
         for (int i = 0; i < 5; i++)
