@@ -41,6 +41,7 @@ public class ModeSwitcher : MonoBehaviour
             GameManager.instance.thresold = 100;
             GameManager.instance.plusValue = GameManager.instance.score;
             GameManager.instance.plusAmount = 5;
+            GameManager.instance.secondStageOn = true;
             canAccess = false;
         }
     }

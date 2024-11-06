@@ -50,6 +50,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
     void AnimateSweepFall()
     {
         zombieController.SetTrigger("trSweepFall");
+        GameManager.instance.SetScore(1);
     }
 
     int health = 2;

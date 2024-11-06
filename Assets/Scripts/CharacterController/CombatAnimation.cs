@@ -21,7 +21,7 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
 
     void ToAttack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.secondStageOn)
         {
             characterController.SetTrigger("trAttack");
         }

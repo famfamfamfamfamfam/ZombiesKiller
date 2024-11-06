@@ -60,9 +60,10 @@ public class FPPCamera : MonoBehaviour
             shootingRay = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(shootingRay, out hit, 115, zombieLayerMask) && GameManager.instance.weaponAmount > 0)
             {
-                GameManager.instance.DecreaseValidDamage();
                 CommunicateManager.instance.CanDieThing(hit.collider.gameObject)?.Die();
             }
+            if (GameManager.instance.weaponAmount > 0)
+                GameManager.instance.DecreaseValidDamage();
             kick = true;
         }
     }
