@@ -16,7 +16,7 @@ public class FPPCamera : MonoBehaviour
         thisCam = GetComponent<Camera>();
     }
 
-    private void OnDisable()
+    private void OnDisable()////looix
     {
         camSight.SetActive(false);
     }

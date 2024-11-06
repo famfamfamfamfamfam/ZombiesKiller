@@ -6,6 +6,9 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField]
+    Joystick joystick;
+
+    [SerializeField]
     Transform head;
     Animator characterController;
     Rigidbody characterRigidbody;
@@ -34,13 +37,13 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!AnyAnimationIsPlaying())
         {
-            if (horizontalValue != 0 || verticalValue != 0)
+            if (horizontalValue != 0 || verticalValue != 0 || joystick.Horizontal != 0 || joystick.Vertical != 0)
             {
                 characterController.SetBool("bStopMoving", false);
                 characterController.SetBool("bMoving", true);
                 characterRigidbody.MovePosition(transform.position + transform.forward * moveSpeed * Time.fixedDeltaTime);
             }
-            else if (horizontalValue == 0 && verticalValue == 0)
+            else if (horizontalValue == 0 && verticalValue == 0 && joystick.Horizontal == 0 && joystick.Vertical == 0)
             {
                 characterController.SetBool("bStopMoving", true);
                 characterController.SetBool("bMoving", false);
@@ -57,14 +60,17 @@ public class CharacterMovement : MonoBehaviour
         }
         return false;
     }
-    Vector3 dir;
+    Vector3 dir, joyDir;
     void NavigateCharacter()
     {
         if (!AnyAnimationIsPlaying())
         {
             dir = new Vector3(horizontalValue, 0, verticalValue);
+            joyDir = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
             if (dir != Vector3.zero)
                 characterRigidbody.MoveRotation(Quaternion.LookRotation(head.rotation * dir));
+            if (joyDir != Vector3.zero)
+                characterRigidbody.MoveRotation(Quaternion.LookRotation(head.rotation * joyDir));
         }
     }
 

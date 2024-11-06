@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        weaponAmount = 50;
+        weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
     }
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     int minusAmount = 1;
     [HideInInspector]
-    public int plusAmount = 15;
+    public int plusAmount = 20;
     public int weaponAmount { get; private set; }
     public void AddValidDamage()
     {
