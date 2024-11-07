@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CamSight.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\CharacterController\FPPCamera.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CombatAnimation.cs" />

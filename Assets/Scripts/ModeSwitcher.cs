@@ -48,7 +48,14 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart
     bool canAccess = false;
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(57);
+        int count = 3;
+        for (int i = 0; i < 3; i++)
+        {
+            //text
+            yield return new WaitForSeconds(1);
+            count--;
+        }
         canAccess = true;
         Destroy(gameObject);
     }

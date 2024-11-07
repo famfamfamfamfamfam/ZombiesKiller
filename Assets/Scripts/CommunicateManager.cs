@@ -10,6 +10,10 @@ public class CommunicateManager : MonoBehaviour
     CombatAnimation charac;
     [SerializeField]
     ReviveZombie zomPool;
+    [SerializeField]
+    TheWallOnSpecialSkill theWall;
+    [SerializeField]
+    KnifeCollider theKnife;
 
     public static CommunicateManager instance;
 
@@ -49,5 +53,18 @@ public class CommunicateManager : MonoBehaviour
     public ISendToPool ToSendToPool()
     {
         return zomPool;
+    }
+
+    public IOnSpecialSkill SpecialSkill(string whatNext)
+    {
+        if (whatNext == "Zombie") return zomPool;
+        if (whatNext == "TheWall") return theWall;
+        if (whatNext == "TheKnife") return theKnife;
+        return null;
+    }
+
+    public IOnSpecialSkill SpecialSkill(GameObject obj)
+    {
+        return obj.GetComponent<IOnSpecialSkill>();
     }
 }

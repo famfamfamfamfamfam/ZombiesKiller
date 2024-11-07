@@ -25,3 +25,8 @@ public interface IOrderOfRunningStart
 {
     void Init();
 }
+
+public interface IOnSpecialSkill
+{
+    void OnSpecialSkill();
+}

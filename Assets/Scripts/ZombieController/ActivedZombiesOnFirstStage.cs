@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
+public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
 {
     Animator zombieController;
 
@@ -62,13 +62,12 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie
             AnimateSweepFall();
     }
 
-
-    [SerializeField]
-    Transform theWall;
-    void OnSpecialSkill()
+    public void OnSpecialSkill()
     {
-        gameObject.transform.SetParent(theWall);
+        health--;
     }
+
+
 
     public void DieEventInSweepFallAnimation()
     {

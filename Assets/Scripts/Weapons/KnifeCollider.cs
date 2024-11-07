@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeCollider : MonoBehaviour
+public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
 {
     [SerializeField]
     Transform theHilt, playerRightHand;
@@ -70,5 +70,11 @@ public class KnifeCollider : MonoBehaviour
             theHilt.rotation = Quaternion.LookRotation(target - theHilt.position);
         }
         aTrigger = false;
+    }
+
+
+    public void OnSpecialSkill()
+    {
+        //SpecialSkill();
     }
 }

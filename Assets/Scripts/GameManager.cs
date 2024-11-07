@@ -24,7 +24,10 @@ public class GameManager : MonoBehaviour
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
-
+        foreach (GameObject obj in objsWaitingToRun)
+        {
+            obj.GetComponent<IOrderOfRunningStart>()?.Init();
+        }
 
     }
 

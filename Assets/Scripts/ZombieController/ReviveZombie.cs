@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart
+public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOnSpecialSkill
 {
     ObjPool zombiePool;
     [SerializeField]
@@ -35,6 +35,18 @@ public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart
         zombiePool.PutInPool(objSent);
         takenZom.RemoveAt(0);
     }
+
+    [SerializeField]
+    Transform theWall;
+    public void OnSpecialSkill()
+    {
+        for (int i = 0; i < takenZom.Count; i++)
+        {
+            takenZom[i].transform.SetParent(theWall);
+            CommunicateManager.instance.SpecialSkill(takenZom[i])?.OnSpecialSkill();
+        }
+    }
+
 
     void OnDestroy()
     {
