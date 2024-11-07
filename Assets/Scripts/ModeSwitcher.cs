@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart
+public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
 {
     [SerializeField]
     GameObject FPPCam;
@@ -14,9 +14,13 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart
     GameObject secondStageWeapon;
     [SerializeField]
     GameObject firstStageSpawn;
+    [SerializeField]
+    GameObject freeCam;
+
 
     public void Init()
     {
+        freeCam.SetActive(false);
         battleZom.SetActive(false);
         secondStageWeapon.SetActive(false);
         StartCoroutine(Countdown());
@@ -58,5 +62,11 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart
         }
         canAccess = true;
         Destroy(gameObject);
+    }
+
+    public void SetUpTheCam()
+    {
+        if (Time.timeScale == 0) freeCam.SetActive(true);
+        else freeCam.SetActive(false);
     }
 }

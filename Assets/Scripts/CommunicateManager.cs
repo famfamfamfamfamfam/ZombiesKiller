@@ -14,6 +14,8 @@ public class CommunicateManager : MonoBehaviour
     TheWallOnSpecialSkill theWall;
     [SerializeField]
     KnifeCollider theKnife;
+    [SerializeField]
+    ModeSwitcher modeSwitcher;
 
     public static CommunicateManager instance;
 
@@ -67,5 +69,10 @@ public class CommunicateManager : MonoBehaviour
     public IOnSpecialSkill SpecialSkill(GameObject obj)
     {
         return obj.GetComponent<IOnSpecialSkill>();
+    }
+
+    public ISwitchCam SwitchCam()
+    {
+        return modeSwitcher;
     }
 }

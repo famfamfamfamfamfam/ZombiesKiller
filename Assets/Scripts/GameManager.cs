@@ -9,21 +9,20 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void OnEnable()
     {
+        if (instance != null) instance = null;
         instance = this;
-    }
-    private void OnDisable()
-    {
-        instance = null;
     }
 
     [SerializeField]
     List<GameObject> objsWaitingToRun;
-
+    [SerializeField]
+    GameObject countDownObj;
     private void Start()
     {
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
+        countDownObj.SetActive(false);
         foreach (GameObject obj in objsWaitingToRun)
         {
             obj.GetComponent<IOrderOfRunningStart>()?.Init();
@@ -56,7 +55,8 @@ public class GameManager : MonoBehaviour
     public int specialEnergy { get; private set; }
     public void SetSpecialEnergy()
     {
-        specialEnergy += plusValue;
+        if (specialEnergy < thresold)
+            specialEnergy += plusValue;
     }
 
     [HideInInspector]
@@ -81,8 +81,26 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool hasRunOnDestroy = false;
 
+    [HideInInspector]
+    public bool turnOn = false;
+
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space) && thresold == specialEnergy)
+        {
+            if (!secondStageOn) Time.timeScale = 0;
+            else turnOn = true;
+            specialEnergy = 0;
+        }
+        if (Time.timeScale == 0)
+        {
+            CommunicateManager.instance.SpecialSkill("Zombie1")?.OnSpecialSkill();
+            CommunicateManager.instance.SpecialSkill("TheWall")?.OnSpecialSkill();
+        }
+        if (turnOn)
+        {
+            countDownObj.SetActive(true);
+            CommunicateManager.instance.SpecialSkill("TheKnife")?.OnSpecialSkill();
+        }
     }
 }

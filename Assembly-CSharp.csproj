@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Weapons\TriggerForPrefabs.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Scripts\Weapons\NormalEnergy.cs" />
+    <Compile Include="Assets\Scripts\Countdown.cs" />
     <Compile Include="Assets\Scripts\Weapons\KnifeCollider.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ZombieCombat.cs" />

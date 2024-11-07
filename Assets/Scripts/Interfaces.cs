@@ -30,3 +30,8 @@ public interface IOnSpecialSkill
 {
     void OnSpecialSkill();
 }
+
+public interface ISwitchCam
+{
+    void SetUpTheCam();
+}
