@@ -1547,6 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theHilt: {fileID: 873791547}
   playerRightHand: {fileID: 1852576807140206169}
+  zom: {fileID: 543450653023254068}
 --- !u!65 &862133626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4753,6 +4754,7 @@ MonoBehaviour:
   plusValue: 1
   thresold: 5
   secondStageOn: 0
+  hasRunOnDestroy: 0
 --- !u!1 &1988852099
 GameObject:
   m_ObjectHideFlags: 0

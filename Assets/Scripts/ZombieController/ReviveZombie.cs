@@ -42,11 +42,11 @@ public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOn
     {
         for (int i = 0; i < takenZom.Count; i++)
         {
-            takenZom[i].transform.SetParent(theWall);
+            if (!GameManager.instance.hasRunOnDestroy)
+                takenZom[i].transform.SetParent(theWall);
             CommunicateManager.instance.SpecialSkill(takenZom[i])?.OnSpecialSkill();
         }
     }
-
 
     void OnDestroy()
     {

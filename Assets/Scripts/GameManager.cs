@@ -77,4 +77,12 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public bool secondStageOn = false;
+
+    [HideInInspector]
+    public bool hasRunOnDestroy = false;
+
+    private void Update()
+    {
+        
+    }
 }

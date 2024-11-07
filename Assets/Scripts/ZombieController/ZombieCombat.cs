@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieCombat : MonoBehaviour, IDie, IReact
+public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill
 {
     Animator zombieController;
     private void OnEnable()
@@ -52,6 +52,13 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact
         ToReact();
         GameManager.instance.SetZomHealth();
     }
+
+    public void OnSpecialSkill()
+    {
+        if (!zombieController.GetCurrentAnimatorStateInfo(0).IsName("React"))
+            zombieController.SetTrigger("trReactOnMoving");
+    }
+
 
     [SerializeField]
     Transform theRightHand;

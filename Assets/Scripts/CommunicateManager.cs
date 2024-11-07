@@ -57,7 +57,8 @@ public class CommunicateManager : MonoBehaviour
 
     public IOnSpecialSkill SpecialSkill(string whatNext)
     {
-        if (whatNext == "Zombie") return zomPool;
+        if (whatNext == "Zombie1") return zomPool;
+        if (whatNext == "Zombie2") return zom;
         if (whatNext == "TheWall") return theWall;
         if (whatNext == "TheKnife") return theKnife;
         return null;

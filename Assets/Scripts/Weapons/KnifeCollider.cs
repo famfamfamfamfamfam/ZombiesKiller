@@ -26,6 +26,7 @@ public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
         theHilt.SetParent(playerRightHand);
     }
 
+
     private void LateUpdate()
     {
         HoldTheKnife();
@@ -40,26 +41,23 @@ public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
     }
 
     int index = 0;
-    void SpecialSkill(bool turnOnCondition, Vector3[] targetsPos)
+    void SpecialSkill(Vector3[] targetsPos)
     {
-        if (turnOnCondition)
+        if (theHilt.parent != null) theHilt.SetParent(null);
+        if (index == targetsPos.Length)
         {
-            if (theHilt.parent != null) theHilt.SetParent(null);
-            if (index == targetsPos.Length)
-            {
-                index = 0;
-                return;
-            }
-            ResetForSpecialSkill(targetsPos[index]);
-            theHilt.position = Vector3.MoveTowards(theHilt.position, targetsPos[index], 20 * Time.deltaTime);
-            transform.rotation *= Quaternion.Euler(0, 720 * 3 * Time.deltaTime, 0);
-            if (Vector3.Dot(theHilt.forward, targetsPos[index] - theHilt.position) <= 0)
-            {
-                index++;
-                aTrigger = true;
-            }
+            index = 0;
+            return;
         }
-
+        ResetForSpecialSkill(targetsPos[index]);
+        theHilt.position = Vector3.MoveTowards(theHilt.position, targetsPos[index], 20 * Time.deltaTime);
+        transform.rotation *= Quaternion.Euler(0, 540 * 3 * Time.deltaTime, 0);
+        if (Vector3.Dot(theHilt.forward, targetsPos[index] - theHilt.position) <= 0)
+        {
+            index++;
+            aTrigger = true;
+            CommunicateManager.instance.SpecialSkill("Zombie2")?.OnSpecialSkill();
+        }
     }
     bool aTrigger = true;
     void ResetForSpecialSkill(Vector3 target)
@@ -72,9 +70,15 @@ public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
         aTrigger = false;
     }
 
+    [SerializeField]
+    Transform zom;
+
+    Vector3[] movePos = new Vector3[2];
 
     public void OnSpecialSkill()
     {
-        //SpecialSkill();
+        movePos[0] = zom.position + Vector3.up * 2 + Vector3.right * 2;
+        movePos[1] = zom.position + Vector3.up * 2 - Vector3.right * 2;
+        SpecialSkill(movePos);
     }
 }

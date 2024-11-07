@@ -18,6 +18,11 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
         transform.rotation = Quaternion.Euler(-90, 0, 0);
     }
 
+    void OnDestroy()
+    {
+        GameManager.instance.hasRunOnDestroy = true;
+    }
+
     private void Update()
     {
         StopToClimb();
@@ -66,8 +71,6 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
     {
         health--;
     }
-
-
 
     public void DieEventInSweepFallAnimation()
     {

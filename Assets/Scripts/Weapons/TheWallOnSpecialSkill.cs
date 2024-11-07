@@ -22,4 +22,10 @@ public class TheWallOnSpecialSkill : MonoBehaviour, IOnSpecialSkill
             timeCount += Time.unscaledDeltaTime;
         }
     }
+
+
+    void OnDestroy()
+    {
+        GameManager.instance.hasRunOnDestroy = true;
+    }
 }
