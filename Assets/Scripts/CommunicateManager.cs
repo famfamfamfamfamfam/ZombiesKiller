@@ -17,11 +17,13 @@ public class CommunicateManager : MonoBehaviour
     [SerializeField]
     ModeSwitcher modeSwitcher;
     [SerializeField]
+    UIManager uiManager;
+    [SerializeField]
     FirsStageUI firsStageUI;
 
     public static CommunicateManager instance;
 
-    private void OnEnable()
+    private void Awake()
     {
         instance = this;
     }
@@ -101,5 +103,15 @@ public class CommunicateManager : MonoBehaviour
     public ICountdown StartCd()
     {
         return firsStageUI;
+    }
+
+    public IMove MovingAgain()
+    {
+        return zom;
+    }
+
+    public IStopTheGame GameStop()
+    {
+        return uiManager;
     }
 }

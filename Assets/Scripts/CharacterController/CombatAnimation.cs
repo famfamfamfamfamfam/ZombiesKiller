@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation, IDash
 {
@@ -50,7 +51,8 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation,
 
     void ToReact()
     {
-        characterController.SetTrigger("trReact");
+        if (!characterController.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            characterController.SetTrigger("trReact");
         GameManager.instance.SetCharHealth();
     }
 
@@ -62,6 +64,7 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation,
     public void Die()
     {
         ToDie();
+        CommunicateManager.instance.MovingAgain()?.Move();
     }
     public void React()
     {
@@ -76,5 +79,12 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation,
     {
         ToAnimateDashing(true);
         DashForward();
+    }
+
+
+    public void GameOverEventInDieAnimation()
+    {
+        GameManager.instance.gameResult = "YOU ARE EATEN";
+        CommunicateManager.instance.GameStop()?.gOverScrOn(GameManager.instance.gameResult);
     }
 }

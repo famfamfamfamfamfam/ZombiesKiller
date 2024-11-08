@@ -15,6 +15,10 @@ public class GeneralUI : MonoBehaviour, IOrderOfRunningStart
 
     public void Init()
     {
+        GameManager.instance.HasChanged += TextForValidAttack;
+        GameManager.instance.HasChanged += SetSEBarMaxValue;
+        GameManager.instance.HasChanged += UpdateSEBarValue;
+
         dash.onClick.AddListener(CommunicateManager.instance.DashChar().Dash);
         validAttack.text = $"{GameManager.instance.weaponAmount}";
         SEBar.maxValue = GameManager.instance.thresold;
@@ -37,13 +41,6 @@ public class GeneralUI : MonoBehaviour, IOrderOfRunningStart
     {
         if (s == "specialEnergy")
             SEBar.value = GameManager.instance.specialEnergy;
-    }
-
-    private void OnEnable()
-    {
-        GameManager.instance.HasChanged += TextForValidAttack;
-        GameManager.instance.HasChanged += SetSEBarMaxValue;
-        GameManager.instance.HasChanged += UpdateSEBarValue;
     }
 
     private void OnDisable()

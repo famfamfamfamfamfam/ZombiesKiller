@@ -31,7 +31,7 @@ public class NormalEnergy : SpawnMethods, IOrderOfRunningStart
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(3, 15));
+            yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(3, 15));
             if (gObjs.Count > 0 && gObjs[0] != null)
             {
                 normalEnergyPool.PutInPool(gObjs[0]);

@@ -21,12 +21,12 @@ public class GameOverUI : MonoBehaviour
 
     void ToBackToMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     void ToRerunTheGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private void OnDisable()

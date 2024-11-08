@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CommunicateManager.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ReviveZombie.cs" />
     <Compile Include="Assets\Scripts\UI\UIMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\SpecialButton.cs" />
     <Compile Include="Assets\Scripts\SpawnMethods.cs" />
     <Compile Include="Assets\Scripts\UI\FirsStageUI.cs" />
     <Compile Include="Assets\Scripts\ModeSwitcher.cs" />

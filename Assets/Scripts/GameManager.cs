@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public event Action<string> HasChanged;
 
     public static GameManager instance;
-    private void OnEnable()
+    private void Awake()
     {
         instance = this;
     }
@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviour
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
+        secondStageOn = false;
         foreach (GameObject obj in objsWaitingToRun)
         {
             obj.GetComponent<IOrderOfRunningStart>()?.Init();
         }
-
     }
 
     public int score { get; private set; }
@@ -62,8 +62,11 @@ public class GameManager : MonoBehaviour
     public void SetSpecialEnergy()
     {
         if (specialEnergy < thresold)
+        {
             specialEnergy += plusValue;
-        HasChanged?.Invoke("specialEnergy");
+            HasChanged?.Invoke("specialEnergy");
+        }
+        if (specialEnergy >= thresold) HasChanged?.Invoke("canTurnOnSkill");
     }
 
     public int thresold { get; private set; }
@@ -90,8 +93,12 @@ public class GameManager : MonoBehaviour
         HasChanged?.Invoke("zomHealth");
     }
 
-    [NonSerialized]
-    public bool secondStageOn = false;
+    public bool secondStageOn {  get; private set; }
+    public void SetBoolSecondStageOn()
+    {
+        secondStageOn = true;
+        HasChanged?.Invoke("secondStageOn");
+    }
 
     //[NonSerialized]
     //public bool hasRunOnDestroy = false;
@@ -102,13 +109,15 @@ public class GameManager : MonoBehaviour
     [NonSerialized]
     public bool hasClick = false;
 
+    [NonSerialized]
+    public bool hasClickSpcButton = false;
 
     bool turnOnSkill = false;
     bool turnOnCoroutine = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && thresold <= specialEnergy)
+        if ((Input.GetKeyDown(KeyCode.Space) && thresold <= specialEnergy) || hasClickSpcButton)
         {
             if (!secondStageOn) Time.timeScale = 0;
             else
@@ -117,6 +126,8 @@ public class GameManager : MonoBehaviour
                 turnOnCoroutine = true;
             }
             specialEnergy = 0;
+            hasClickSpcButton = false;
+            HasChanged?.Invoke("turnOffButton");
             HasChanged?.Invoke("specialEnergy");
         }
         if (Time.timeScale == 0)

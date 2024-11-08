@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill
+public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill, IMove
 {
     Animator zombieController;
     private void OnEnable()
@@ -59,6 +59,11 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill
             zombieController.SetTrigger("trReactOnMoving");
     }
 
+    public void Move()
+    {
+        zombieController.SetTrigger("trOutAttack");
+    }
+
 
     [SerializeField]
     Transform theRightHand;
@@ -70,5 +75,11 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill
             //iReact?.React();
             CommunicateManager.instance.CanReactThing("Character")?.React();
         }
+    }
+
+    public void GameOverEventInDieAnimation()
+    {
+        GameManager.instance.gameResult = "A LONG WAY TO GO";
+        CommunicateManager.instance.GameStop()?.gOverScrOn(GameManager.instance.gameResult);
     }
 }

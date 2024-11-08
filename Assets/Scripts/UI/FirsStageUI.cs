@@ -14,6 +14,7 @@ public class FirsStageUI : MonoBehaviour, IOrderOfRunningStart, IToTheShootingSi
 
     public void Init()
     {
+        GameManager.instance.HasChanged += ScoreText;
         aim.onClick.AddListener(HasClick);
         score.text = $"{GameManager.instance.score}";
     }
@@ -37,11 +38,6 @@ public class FirsStageUI : MonoBehaviour, IOrderOfRunningStart, IToTheShootingSi
     public void CountdownText(int countNum)
     {
         cd.text = $"{countNum}";
-    }
-
-    void OnEnable()
-    {
-        GameManager.instance.HasChanged += ScoreText;
     }
 
     void OnDisable()

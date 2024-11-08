@@ -828,6 +828,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d367e02d92e4d846893f8f786d1f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stScr: {fileID: 1128915520}
+  ndScr: {fileID: 1603262472}
+  spcButton: {fileID: 1833896916}
+  gOverScr: {fileID: 653804654}
+  stt: {fileID: 112072596}
 --- !u!1001 &538289847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1441,7 +1446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: cd
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4033,6 +4038,7 @@ GameObject:
   - component: {fileID: 1833896920}
   - component: {fileID: 1833896919}
   - component: {fileID: 1833896918}
+  - component: {fileID: 1833896921}
   m_Layer: 5
   m_Name: SpecialSkill
   m_TagString: Untagged
@@ -4141,6 +4147,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833896916}
   m_CullTransparentMesh: 1
+--- !u!114 &1833896921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833896916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae19dd7317df39b47babc768dbfbd333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1850172886
 GameObject:
   m_ObjectHideFlags: 0
@@ -4502,7 +4520,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b91adf7023b97428ad86241615f013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objsWaitingToRun: []
+  objsWaitingToRun:
+  - {fileID: 2029089355}
+  - {fileID: 1635559193}
+  - {fileID: 1756159710}
+  - {fileID: 102060453}
+  - {fileID: 2093094349}
+  - {fileID: 347624024}
+  - {fileID: 1128915520}
+  - {fileID: 1850172886}
 --- !u!1 &1988852099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4674,6 +4700,7 @@ MonoBehaviour:
   theWall: {fileID: 1664836555}
   theKnife: {fileID: 862133625}
   modeSwitcher: {fileID: 1850172888}
+  uiManager: {fileID: 347624026}
   firsStageUI: {fileID: 1128915524}
 --- !u!1 &2029089355
 GameObject:
@@ -4996,11 +5023,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1255337944}
-  - {fileID: 1833896917}
   - {fileID: 1128915521}
   - {fileID: 273030811}
   - {fileID: 913326600}
   - {fileID: 1603262473}
+  - {fileID: 1833896917}
   - {fileID: 538289848}
   - {fileID: 653804655}
   m_Father: {fileID: 347624025}

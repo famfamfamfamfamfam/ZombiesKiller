@@ -62,3 +62,13 @@ public interface ICountdown
 {
     void CountdownText(int countNum);
 }
+
+public interface IMove
+{
+    void Move();
+}
+
+public interface IStopTheGame
+{
+    void gOverScrOn(string s);
+}

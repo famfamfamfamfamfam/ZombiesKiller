@@ -45,7 +45,7 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
             GameManager.instance.SetThresold();
             GameManager.instance.plusValue = GameManager.instance.score;
             GameManager.instance.plusAmount = 5;
-            GameManager.instance.secondStageOn = true;
+            GameManager.instance.SetBoolSecondStageOn();
             canAccess = false;
         }
     }
@@ -53,7 +53,7 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
     IEnumerator Countdown()
     {
         yield return new WaitForSecondsRealtime(57);
-        int count = 3;
+        int count = 2;
         for (int i = 0; i < 3; i++)
         {
             CommunicateManager.instance.StartCd()?.CountdownText(count);

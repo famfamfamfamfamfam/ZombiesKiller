@@ -79,7 +79,8 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
     }
     public void GameOverEventInClimbAnimation()
     {
-
+        GameManager.instance.gameResult = "PEOPLE ARE EATEN";
+        CommunicateManager.instance.GameStop()?.gOverScrOn(GameManager.instance.gameResult);
     }
 
 }

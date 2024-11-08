@@ -16,7 +16,7 @@ public class UIMenu : MonoBehaviour
 
     void ToPlay()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     void ToQuit()
