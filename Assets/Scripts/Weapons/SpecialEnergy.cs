@@ -42,5 +42,6 @@ public class SpecialEnergy : SpawnMethods, IOrderOfRunningStart
     {
         Destroy(gObj);
         specialEnergyPool.DestroyPool();
+        StopAllCoroutines();
     }
 }

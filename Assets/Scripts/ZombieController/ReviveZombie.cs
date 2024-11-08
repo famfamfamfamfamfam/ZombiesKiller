@@ -56,5 +56,6 @@ public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOn
         }
         takenZom.Clear();
         zombiePool.DestroyPool();
+        StopAllCoroutines();
     }
 }

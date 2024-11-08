@@ -42,7 +42,7 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
             FPPCam.SetActive(false);
             battleZom.SetActive(true);
             secondStageWeapon.SetActive(true);
-            GameManager.instance.thresold = 100;
+            GameManager.instance.thresold = 1;
             GameManager.instance.plusValue = GameManager.instance.score;
             GameManager.instance.plusAmount = 5;
             GameManager.instance.secondStageOn = true;
@@ -52,7 +52,7 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
     bool canAccess = false;
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(57);
+        yield return new WaitForSeconds(5);
         int count = 3;
         for (int i = 0; i < 3; i++)
         {

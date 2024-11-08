@@ -9,9 +9,9 @@ public class TheWallOnSpecialSkill : MonoBehaviour, IOnSpecialSkill
     {
         CommunicateManager.instance.SwitchCam()?.SetUpTheCam();
         if (timeCount < 0.9f)
-            transform.position += Vector3.up * 0.45f * Time.unscaledDeltaTime;
+            transform.position += Vector3.up * 0.18f * Time.unscaledDeltaTime;//xem lai
         else if (timeCount < 1.5)
-            transform.position += Vector3.down * 0.3f * Time.unscaledDeltaTime;
+            transform.position += Vector3.down * 0.12f * Time.unscaledDeltaTime;
         else
         {
             timeCount = 0;
@@ -20,6 +20,7 @@ public class TheWallOnSpecialSkill : MonoBehaviour, IOnSpecialSkill
             return;
         }
         timeCount += Time.unscaledDeltaTime;
+        Debug.Log(gameObject.transform.position);
 
     }
 

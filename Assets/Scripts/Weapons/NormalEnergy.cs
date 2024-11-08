@@ -48,5 +48,6 @@ public class NormalEnergy : SpawnMethods, IOrderOfRunningStart
         }
         gObjs.Clear();
         normalEnergyPool.DestroyPool();
+        StopAllCoroutines();
     }
 }

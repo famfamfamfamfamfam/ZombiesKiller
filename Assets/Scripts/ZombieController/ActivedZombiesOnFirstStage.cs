@@ -69,7 +69,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
 
     public void OnSpecialSkill()
     {
-        health--;
+        Die();
     }
 
     public void DieEventInSweepFallAnimation()

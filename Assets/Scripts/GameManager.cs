@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         charHealth = 100;
         zomHealth = 100;
         countDownObj.SetActive(false);
+        turnOn = false;
         foreach (GameObject obj in objsWaitingToRun)
         {
             obj.GetComponent<IOrderOfRunningStart>()?.Init();
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
 
     int minusAmount = 1;
-    [HideInInspector]
+    [NonSerialized]
     public int plusAmount = 20;
     public int weaponAmount { get; private set; }
     public void AddValidDamage()
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
         weaponAmount -= minusAmount;
     }
 
-    [HideInInspector]
+    [NonSerialized]
     public int plusValue = 1;
 
     public int specialEnergy { get; private set; }
@@ -59,33 +61,37 @@ public class GameManager : MonoBehaviour
             specialEnergy += plusValue;
     }
 
-    [HideInInspector]
-    public int thresold = 5;
+    [NonSerialized]
+    public int thresold = 1;
 
     int minusValue = 5;
     public int charHealth { get; private set; }
     public void SetCharHealth()
     {
+        if (charHealth == 0) CommunicateManager.instance.CanDieThing("Character")?.Die();
         charHealth -= minusValue * 3;
     }
 
     public int zomHealth { get; private set; }
     public void SetZomHealth()
     {
+        if (zomHealth == 0) CommunicateManager.instance.CanDieThing("Zombie")?.Die();
         zomHealth -= minusValue;
     }
 
-    [HideInInspector]
+    [NonSerialized]
     public bool secondStageOn = false;
 
-    [HideInInspector]
+    [NonSerialized]
     public bool hasRunOnDestroy = false;
 
-    [HideInInspector]
-    public bool turnOn = false;
+    [NonSerialized]
+    public bool turnOn;
 
     private void Update()
     {
+        //if (thresold == specialEnergy)
+            Debug.Log(specialEnergy);
         if (Input.GetKeyDown(KeyCode.Space) && thresold == specialEnergy)
         {
             if (!secondStageOn) Time.timeScale = 0;

@@ -14,4 +14,9 @@ public class Countdown : MonoBehaviour
         GameManager.instance.turnOn = false;
         gameObject.SetActive(false);
     }
+
+    private void OnDisable()
+    {
+        StopCoroutine(Duration());
+    }
 }
