@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     List<GameObject> objsWaitingToRun;
     private void Start()
     {
-        thresold = 2;
+        thresold = 1;
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     public void SetCharHealth()
     {
         if (charHealth <= 0) CommunicateManager.instance.CanDieThing("Character")?.Die();
-        charHealth -= minusValue * 3;
+        charHealth -= minusValue * 5;
         HasChanged?.Invoke("charHealth");
     }
 
