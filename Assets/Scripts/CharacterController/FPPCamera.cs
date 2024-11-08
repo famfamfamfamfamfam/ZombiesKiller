@@ -23,9 +23,11 @@ public class FPPCamera : MonoBehaviour, IOrderOfRunningStart
         camSight.SetActive(false);
     }
 
+    Quaternion thisRotation;
     public void Init()
     {
         transform.position = theWall.position - Vector3.forward * 15;
+        thisRotation = transform.rotation;
     }
     private void Update()
     {
@@ -78,24 +80,26 @@ public class FPPCamera : MonoBehaviour, IOrderOfRunningStart
         }
     }
     bool kick = false;
-    int frameCount = 1;
+    float eTime = 0;
+
     void KickBack()
     {
         if (kick)
         {
-            if (frameCount < 21)
+            if (eTime < 0.1f)
             {
-                transform.rotation *= Quaternion.Euler(-1f / 10, 0f, 0f);
-                frameCount++;
+                transform.rotation *= Quaternion.Euler(-35 * Time.deltaTime, 0f, 0f);
+                eTime += Time.deltaTime;
             }
-            else if (frameCount < 51)
+            else if (eTime < 0.25f)
             {
-                transform.rotation *= Quaternion.Euler(1f / 15, 0f, -0f);
-                frameCount++;
+                transform.rotation *= Quaternion.Euler(70/3 * Time.deltaTime, 0f, -0f);
+                eTime += Time.deltaTime;
             }
             else
             {
-                frameCount = 1;
+                transform.rotation = thisRotation;
+                eTime = 0;
                 kick = false;
             }
         }

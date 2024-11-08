@@ -868,7 +868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.6124, y: -31.2302}
+  m_AnchoredPosition: {x: 107.61243, y: -31.230225}
   m_SizeDelta: {x: 119.2248, y: 35.4605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392649128
@@ -1442,7 +1442,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
