@@ -16,6 +16,8 @@ public class CommunicateManager : MonoBehaviour
     KnifeCollider theKnife;
     [SerializeField]
     ModeSwitcher modeSwitcher;
+    [SerializeField]
+    FirsStageUI firsStageUI;
 
     public static CommunicateManager instance;
 
@@ -89,5 +91,15 @@ public class CommunicateManager : MonoBehaviour
     public IDash DashChar()
     {
         return charac;
+    }
+
+    public IToTheShootingSight SwitchToShooting()
+    {
+        return firsStageUI;
+    }
+
+    public ICountdown StartCd()
+    {
+        return firsStageUI;
     }
 }

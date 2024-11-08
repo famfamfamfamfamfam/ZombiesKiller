@@ -17,7 +17,6 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
     [SerializeField]
     GameObject freeCam;
 
-
     public void Init()
     {
         freeCam.SetActive(false);
@@ -28,9 +27,10 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || CommunicateManager.instance.SwitchToShooting().Input())
         {
             FPPCam.SetActive(!FPPCam.gameObject.activeSelf);
+            GameManager.instance.hasClick = false;
         }
     }
 
@@ -52,11 +52,11 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
     bool canAccess = false;
     IEnumerator Countdown()
     {
-        yield return new WaitForSecondsRealtime(100);
+        yield return new WaitForSecondsRealtime(57);
         int count = 3;
         for (int i = 0; i < 3; i++)
         {
-            //text
+            CommunicateManager.instance.StartCd()?.CountdownText(count);
             yield return new WaitForSecondsRealtime(1);
             count--;
         }

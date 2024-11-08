@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,4 +51,14 @@ public interface IAdjustTransform
 public interface IDash
 {
     void Dash();
+}
+
+public interface IToTheShootingSight
+{
+    bool Input();
+}
+
+public interface ICountdown
+{
+    void CountdownText(int countNum);
 }

@@ -9,12 +9,14 @@ public class GameManager : MonoBehaviour
 {
     public event Action<string> HasChanged;
 
-
     public static GameManager instance;
     private void OnEnable()
     {
         instance = this;
     }
+
+    [NonSerialized]
+    public string gameResult;
 
     [SerializeField]
     List<GameObject> objsWaitingToRun;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     public void SetScore()
     {
         score++;
+        HasChanged?.Invoke("score");
     }
 
     int minusAmount = 1;
@@ -76,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         if (charHealth <= 0) CommunicateManager.instance.CanDieThing("Character")?.Die();
         charHealth -= minusValue * 3;
+        HasChanged?.Invoke("charHealth");
     }
 
     public int zomHealth { get; private set; }
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         if (zomHealth <= 0) CommunicateManager.instance.CanDieThing("Zombie")?.Die();
         zomHealth -= minusValue;
+        HasChanged?.Invoke("zomHealth");
     }
 
     [NonSerialized]
@@ -93,6 +98,9 @@ public class GameManager : MonoBehaviour
 
     [NonSerialized]
     public bool oneTimeUse = true;
+
+    [NonSerialized]
+    public bool hasClick = false;
 
 
     bool turnOnSkill = false;
@@ -109,6 +117,7 @@ public class GameManager : MonoBehaviour
                 turnOnCoroutine = true;
             }
             specialEnergy = 0;
+            HasChanged?.Invoke("specialEnergy");
         }
         if (Time.timeScale == 0)
         {
@@ -130,6 +139,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(5);
         zomHealth -= 20;
+        HasChanged?.Invoke("zomHealth");
         turnOnSkill = false;
         CommunicateManager.instance.Adjust()?.AdjustTransform();
     }

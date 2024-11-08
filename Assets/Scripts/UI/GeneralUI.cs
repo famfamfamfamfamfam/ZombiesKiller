@@ -4,18 +4,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GeneralUI : MonoBehaviour
+public class GeneralUI : MonoBehaviour, IOrderOfRunningStart
 {
     [SerializeField]
     TextMeshProUGUI validAttack;
     [SerializeField]
-    Button spcSkill;
+    Button dash;
     [SerializeField]
     Slider SEBar;
 
-    void Start()
+    public void Init()
     {
-        spcSkill.onClick.AddListener(CommunicateManager.instance.DashChar().Dash);
+        dash.onClick.AddListener(CommunicateManager.instance.DashChar().Dash);
         validAttack.text = $"{GameManager.instance.weaponAmount}";
         SEBar.maxValue = GameManager.instance.thresold;
         SEBar.value = GameManager.instance.specialEnergy;
@@ -51,5 +51,10 @@ public class GeneralUI : MonoBehaviour
         GameManager.instance.HasChanged -= TextForValidAttack;
         GameManager.instance.HasChanged -= SetSEBarMaxValue;
         GameManager.instance.HasChanged -= UpdateSEBarValue;
+    }
+
+    void OnDestroy()
+    {
+        dash.onClick.RemoveAllListeners();
     }
 }
