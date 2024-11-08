@@ -53,8 +53,8 @@ public class FPPCamera : MonoBehaviour, IOrderOfRunningStart
             transform.position += axis * 7.5f * Time.deltaTime;
         else
         {
-            joystickMove = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-            transform.position += joystickMove * 5;
+            joystickMove = new Vector3(joystick.Horizontal, joystick.Vertical, 0);
+            transform.position += joystickMove * 5 * Time.deltaTime;
         }
     }
 
