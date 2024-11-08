@@ -25,7 +25,7 @@ public class SpecialEnergy : SpawnMethods, IOrderOfRunningStart
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(3, 15));
+            yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(3, 15));
             gObj = specialEnergyPool.TakeFromPool();
             gObj.transform.position = new Vector3(UnityEngine.Random.Range(-17f, 17f), 42, UnityEngine.Random.Range(-55f, -20f));
             yield return StartCoroutine(DisappearSpecialEnergy());
@@ -34,7 +34,7 @@ public class SpecialEnergy : SpawnMethods, IOrderOfRunningStart
 
     IEnumerator DisappearSpecialEnergy()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(5, 10));
+        yield return new WaitForSecondsRealtime(UnityEngine.Random.Range(5, 10));
         specialEnergyPool.PutInPool(gObj);
     }
 

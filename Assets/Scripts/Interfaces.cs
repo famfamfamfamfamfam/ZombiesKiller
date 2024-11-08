@@ -35,3 +35,13 @@ public interface ISwitchCam
 {
     void SetUpTheCam();
 }
+
+public interface IUnSetParent
+{
+    void UnSetParent();
+}
+
+public interface IAdjustTransform
+{
+    void AdjustTransform();
+}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOnSpecialSkill
+public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOnSpecialSkill//, IUnSetParent
 {
     ObjPool zombiePool;
     [SerializeField]
@@ -33,20 +33,34 @@ public class ReviveZombie : SpawnMethods, ISendToPool, IOrderOfRunningStart, IOn
     public void SendToPool(GameObject objSent)
     {
         zombiePool.PutInPool(objSent);
-        takenZom.RemoveAt(0);
+        if (takenZom.Count > 0) takenZom.RemoveAt(0);
     }
 
     [SerializeField]
     Transform theWall;
     public void OnSpecialSkill()
     {
-        for (int i = 0; i < takenZom.Count; i++)
+        if (GameManager.instance.oneTimeUse)
         {
-            if (!GameManager.instance.hasRunOnDestroy)
-                takenZom[i].transform.SetParent(theWall);
-            CommunicateManager.instance.SpecialSkill(takenZom[i])?.OnSpecialSkill();
+            CommunicateManager.instance.SwitchCam()?.SetUpTheCam();
+            for (int i = 0; i < takenZom.Count; i++)
+            {
+                //if (!GameManager.instance.hasRunOnDestroy)
+                //    takenZom[i].transform.SetParent(theWall);
+                CommunicateManager.instance.SpecialSkill(takenZom[i])?.OnSpecialSkill();
+            }
+            GameManager.instance.oneTimeUse = false;
         }
     }
+
+    //public void UnSetParent()
+    //{
+    //    for (int i = 0; i < takenZom.Count; i++)
+    //    {
+    //        if (!GameManager.instance.hasRunOnDestroy)
+    //            takenZom[i].transform.SetParent(null);
+    //    }
+    //}
 
     void OnDestroy()
     {

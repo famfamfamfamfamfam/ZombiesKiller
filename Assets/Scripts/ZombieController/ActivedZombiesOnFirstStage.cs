@@ -20,7 +20,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
 
     void OnDestroy()
     {
-        GameManager.instance.hasRunOnDestroy = true;
+        //GameManager.instance.hasRunOnDestroy = true;
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
     void AnimateSweepFall()
     {
         zombieController.SetTrigger("trSweepFall");
-        GameManager.instance.SetScore(1);
+        GameManager.instance.SetScore();
     }
 
     int health = 2;
@@ -79,6 +79,7 @@ public class ActivedZombiesOnFirstStage : MonoBehaviour, IDie, IOnSpecialSkill
     }
     public void GameOverEventInClimbAnimation()
     {
+
     }
 
 }

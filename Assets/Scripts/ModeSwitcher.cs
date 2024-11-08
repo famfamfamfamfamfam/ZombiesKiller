@@ -52,12 +52,12 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
     bool canAccess = false;
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSecondsRealtime(100);
         int count = 3;
         for (int i = 0; i < 3; i++)
         {
             //text
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             count--;
         }
         canAccess = true;

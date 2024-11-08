@@ -75,4 +75,14 @@ public class CommunicateManager : MonoBehaviour
     {
         return modeSwitcher;
     }
+
+    //public IUnSetParent UnSetParent()
+    //{
+    //    return zomPool;
+    //}
+
+    public IAdjustTransform Adjust()
+    {
+        return theKnife;
+    }
 }

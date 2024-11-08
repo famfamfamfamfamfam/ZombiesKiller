@@ -7,26 +7,25 @@ public class TheWallOnSpecialSkill : MonoBehaviour, IOnSpecialSkill
     float timeCount = 0;
     public void OnSpecialSkill()
     {
-        CommunicateManager.instance.SwitchCam()?.SetUpTheCam();
-        if (timeCount < 0.9f)
-            transform.position += Vector3.up * 0.18f * Time.unscaledDeltaTime;//xem lai
-        else if (timeCount < 1.5)
-            transform.position += Vector3.down * 0.12f * Time.unscaledDeltaTime;
+        if (timeCount < 1.0f)
+            transform.position += Vector3.up * 4 * Time.unscaledDeltaTime;
+        else if (timeCount < 1.25)
+            transform.position += Vector3.down * 16 * Time.unscaledDeltaTime;
         else
         {
             timeCount = 0;
+            //CommunicateManager.instance.UnSetParent()?.UnSetParent();
             Time.timeScale = 1;
+            GameManager.instance.oneTimeUse = true;
             CommunicateManager.instance.SwitchCam()?.SetUpTheCam();
             return;
         }
         timeCount += Time.unscaledDeltaTime;
-        Debug.Log(gameObject.transform.position);
-
     }
 
 
     void OnDestroy()
     {
-        GameManager.instance.hasRunOnDestroy = true;
+        //GameManager.instance.hasRunOnDestroy = true;
     }
 }

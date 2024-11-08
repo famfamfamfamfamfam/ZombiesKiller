@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
+public class KnifeCollider : MonoBehaviour, IOnSpecialSkill, IAdjustTransform
 {
     [SerializeField]
     Transform theHilt, playerRightHand;
@@ -80,5 +80,15 @@ public class KnifeCollider : MonoBehaviour, IOnSpecialSkill
         movePos[0] = zom.position + Vector3.up * 2 + Vector3.right * 2;
         movePos[1] = zom.position + Vector3.up * 2 - Vector3.right * 2;
         SpecialSkill(movePos);
+    }
+    public void AdjustTransform()
+    {
+        AdjustRotationOfTheKnife();
+    }
+
+
+    void AdjustRotationOfTheKnife()
+    {
+        transform.forward = theHilt.forward;
     }
 }

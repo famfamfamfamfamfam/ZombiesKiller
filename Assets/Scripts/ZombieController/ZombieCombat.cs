@@ -62,7 +62,6 @@ public class ZombieCombat : MonoBehaviour, IDie, IReact, IOnSpecialSkill
 
     [SerializeField]
     Transform theRightHand;
-
     public void CheckDamageAnimationEvent()
     {
         if (Physics.CheckSphere(theRightHand.position, 0.2f))

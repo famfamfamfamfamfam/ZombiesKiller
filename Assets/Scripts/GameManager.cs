@@ -16,15 +16,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     List<GameObject> objsWaitingToRun;
-    [SerializeField]
-    GameObject countDownObj;
     private void Start()
     {
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
-        countDownObj.SetActive(false);
-        turnOn = false;
         foreach (GameObject obj in objsWaitingToRun)
         {
             obj.GetComponent<IOrderOfRunningStart>()?.Init();
@@ -33,9 +29,9 @@ public class GameManager : MonoBehaviour
     }
 
     public int score { get; private set; }
-    public void SetScore(int plusScore)
+    public void SetScore()
     {
-        score += plusScore;
+        score++;
     }
 
     int minusAmount = 1;
@@ -68,34 +64,40 @@ public class GameManager : MonoBehaviour
     public int charHealth { get; private set; }
     public void SetCharHealth()
     {
-        if (charHealth == 0) CommunicateManager.instance.CanDieThing("Character")?.Die();
+        if (charHealth <= 0) CommunicateManager.instance.CanDieThing("Character")?.Die();
         charHealth -= minusValue * 3;
     }
 
     public int zomHealth { get; private set; }
     public void SetZomHealth()
     {
-        if (zomHealth == 0) CommunicateManager.instance.CanDieThing("Zombie")?.Die();
+        if (zomHealth <= 0) CommunicateManager.instance.CanDieThing("Zombie")?.Die();
         zomHealth -= minusValue;
     }
 
     [NonSerialized]
     public bool secondStageOn = false;
 
-    [NonSerialized]
-    public bool hasRunOnDestroy = false;
+    //[NonSerialized]
+    //public bool hasRunOnDestroy = false;
 
     [NonSerialized]
-    public bool turnOn;
+    public bool oneTimeUse = true;
+
+
+    bool turnOnSkill = false;
+    bool turnOnCoroutine = false;
 
     private void Update()
     {
-        //if (thresold == specialEnergy)
-            Debug.Log(specialEnergy);
-        if (Input.GetKeyDown(KeyCode.Space) && thresold == specialEnergy)
+        if (Input.GetKeyDown(KeyCode.Space) && thresold <= specialEnergy)
         {
             if (!secondStageOn) Time.timeScale = 0;
-            else turnOn = true;
+            else
+            {
+                turnOnSkill = true;
+                turnOnCoroutine = true;
+            }
             specialEnergy = 0;
         }
         if (Time.timeScale == 0)
@@ -103,10 +105,22 @@ public class GameManager : MonoBehaviour
             CommunicateManager.instance.SpecialSkill("Zombie1")?.OnSpecialSkill();
             CommunicateManager.instance.SpecialSkill("TheWall")?.OnSpecialSkill();
         }
-        if (turnOn)
+        if (turnOnSkill)
         {
-            countDownObj.SetActive(true);
+            if (turnOnCoroutine)
+            {
+                StartCoroutine(Duration());
+                turnOnCoroutine = false;
+            }    
             CommunicateManager.instance.SpecialSkill("TheKnife")?.OnSpecialSkill();
         }
+    }
+
+    IEnumerator Duration()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        zomHealth -= 20;
+        turnOnSkill = false;
+        CommunicateManager.instance.Adjust()?.AdjustTransform();
     }
 }

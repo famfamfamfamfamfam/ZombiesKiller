@@ -618,7 +618,7 @@ Camera:
   field of view: 70
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4883,13 +4883,6 @@ MonoBehaviour:
   - {fileID: 1635559193}
   - {fileID: 1756159710}
   - {fileID: 1850172886}
-  countDownObj: {fileID: 1322008880}
-  plusAmount: 15
-  plusValue: 1
-  thresold: 5
-  secondStageOn: 0
-  hasRunOnDestroy: 0
-  turnOn: 0
 --- !u!1 &1988852099
 GameObject:
   m_ObjectHideFlags: 0
@@ -10504,6 +10497,7 @@ SceneRoots:
   - {fileID: 543450653107601018}
   - {fileID: 956125149}
   - {fileID: 873791547}
+  - {fileID: 199615840}
   - {fileID: 102060456}
   - {fileID: 543450653023254068}
   - {fileID: 1607082298}
@@ -10511,4 +10505,3 @@ SceneRoots:
   - {fileID: 91860924}
   - {fileID: 1594896127}
   - {fileID: 347624025}
-  - {fileID: 199615840}

@@ -9,7 +9,7 @@ public class SpawnMethods : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeToWait);
+            yield return new WaitForSecondsRealtime(timeToWait);
             GameObject obj = pool.TakeFromPool();
             if (obj != null)
             {
