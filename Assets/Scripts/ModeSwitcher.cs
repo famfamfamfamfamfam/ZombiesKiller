@@ -42,7 +42,7 @@ public class ModeSwitcher : MonoBehaviour, IOrderOfRunningStart, ISwitchCam
             FPPCam.SetActive(false);
             battleZom.SetActive(true);
             secondStageWeapon.SetActive(true);
-            GameManager.instance.thresold = 1;
+            GameManager.instance.SetThresold();
             GameManager.instance.plusValue = GameManager.instance.score;
             GameManager.instance.plusAmount = 5;
             GameManager.instance.secondStageOn = true;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
+public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation, IDash
 {
     Animator characterController;
     Rigidbody characterRigidbody;
@@ -15,7 +15,7 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
     private void Update()
     {
         ToAttack();
-        ToAnimateDashing();
+        ToAnimateDashing(Input.GetMouseButtonDown(1));
         DashForward();
     }
 
@@ -26,9 +26,9 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
             characterController.SetTrigger("trAttack");
         }
     }
-    void ToAnimateDashing()
+    void ToAnimateDashing(bool input)
     {
-        if (Input.GetMouseButtonDown(1))
+        if (input)
         {
             characterController.SetTrigger("trDash");
         }
@@ -72,4 +72,9 @@ public class CombatAnimation : MonoBehaviour, IDie, IReact, IIsPlayingAnimation
         return characterController.GetCurrentAnimatorStateInfo(0).IsName("Attack");
     }
 
+    public void Dash()
+    {
+        ToAnimateDashing(true);
+        DashForward();
+    }
 }

@@ -7,10 +7,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public event Action<string> HasChanged;
+
+
     public static GameManager instance;
     private void OnEnable()
     {
-        if (instance != null) instance = null;
         instance = this;
     }
 
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     List<GameObject> objsWaitingToRun;
     private void Start()
     {
+        thresold = 2;
         weaponAmount = 100;
         charHealth = 100;
         zomHealth = 100;
@@ -41,10 +44,12 @@ public class GameManager : MonoBehaviour
     public void AddValidDamage()
     {
         weaponAmount += plusAmount;
+        HasChanged?.Invoke("weaponAmount");
     }
     public void DecreaseValidDamage()
     {
         weaponAmount -= minusAmount;
+        HasChanged?.Invoke("weaponAmount");
     }
 
     [NonSerialized]
@@ -55,10 +60,15 @@ public class GameManager : MonoBehaviour
     {
         if (specialEnergy < thresold)
             specialEnergy += plusValue;
+        HasChanged?.Invoke("specialEnergy");
     }
 
-    [NonSerialized]
-    public int thresold = 1;
+    public int thresold { get; private set; }
+    public void SetThresold()
+    {
+        thresold = 50;
+        HasChanged?.Invoke("thresold");
+    }
 
     int minusValue = 5;
     public int charHealth { get; private set; }

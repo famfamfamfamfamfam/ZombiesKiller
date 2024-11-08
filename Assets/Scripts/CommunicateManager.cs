@@ -85,4 +85,9 @@ public class CommunicateManager : MonoBehaviour
     {
         return theKnife;
     }
+
+    public IDash DashChar()
+    {
+        return charac;
+    }
 }

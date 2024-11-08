@@ -64,6 +64,7 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\CommunicateManager.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ReviveZombie.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMenu.cs" />
     <Compile Include="Assets\Scripts\SpawnMethods.cs" />
     <Compile Include="Assets\Scripts\ModeSwitcher.cs" />
     <Compile Include="Assets\Scripts\Weapons\TriggerForPrefabs.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Scripts\Weapons\NormalEnergy.cs" />
     <Compile Include="Assets\Scripts\Weapons\KnifeCollider.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI\GeneralUI.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ZombieCombat.cs" />
     <Compile Include="Assets\Scripts\Weapons\TheWallOnSpecialSkill.cs" />
     <Compile Include="Assets\Scripts\ZombieController\ActivedZombiesOnFirstStage.cs" />
@@ -80,11 +82,11 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Scripts\Weapons\SpecialEnergy.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CamSight.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\CharacterController\FPPCamera.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Scripts\CharacterController\CombatAnimation.cs" />

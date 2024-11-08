@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public interface IDie
 {
@@ -44,4 +45,9 @@ public interface IUnSetParent
 public interface IAdjustTransform
 {
     void AdjustTransform();
+}
+
+public interface IDash
+{
+    void Dash();
 }
